@@ -1,7 +1,9 @@
 import os
+import re
 import fitz
 import json
 from pathlib import Path
+from unidecode import unidecode
 
 def extract_text_by_page(pdf_path: str):
     """
@@ -11,10 +13,18 @@ def extract_text_by_page(pdf_path: str):
     doc = fitz.open(pdf_path)
     pages = []
     for i, page in enumerate(doc):
-        text = " ".join(page.get_text("text").split())
-        pages.append({"page": i + 1, "text": text, "file": Path(pdf_path).name})
+        text = page.get_text("text")
+        text = unidecode(text)
+        text = re.sub(r'[\u0000-\u001F\u007F]', '', text)
+        text = text.encode().decode("unicode_escape")
+        text = text.replace('\"', '\'')
+        text = re.sub(r'\.{5,}\s*\d*', '', text)
+        text = re.sub(r'\s+', ' ', text).strip()
+        cleaned_text = ' '.join(text.split())
+        pages.append({"page": i + 1, "text": cleaned_text, "file": Path(pdf_path).name})
+
     doc.close()
-    with open(f"./data/extracted_pdfs/{Path(pdf_path).stem}_extracted.json", "w") as f:
+    with open(f"./data/extracted_pdfs/{Path(pdf_path).stem}_extracted.json", "w", encoding="utf-16") as f:
         json.dump(pages, f, indent=4)
     return pages
 
