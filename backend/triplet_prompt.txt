@@ -1,0 +1,19 @@
+You are an expert biomedical knowledge graph constructor.  
+Your task is to read the following chunk of text and extract knowledge in the form of subject–relation–object triplets.  
+
+Guidelines:
+- Capture only meaningful scientific/clinical facts, not formatting or filler text.  
+- Subjects and objects should be specific entities (e.g., "Complex sleep apnea", "Obstructive apnea", "Electrocardiogram-based analysis").  
+- Relations should be verbs or verb phrases that clearly describe the connection (e.g., "is defined as", "is associated with", "is caused by", "is measured by", "is improved with").  
+- Keep entities normalized and concise (avoid unnecessary adjectives unless they are medically relevant, e.g., "narrow spectral band e-LFC").  
+- Include multiple triplets if multiple facts exist in the chunk.  
+- If numerical or threshold values are explicitly stated, include them as objects (e.g., "Central apnea index" – "≥ 5 per hour").  
+- Ignore disclaimers, references, or funding acknowledgments.  
+- Output strictly as a JSON list of triplets in the form:
+  [
+    {"subject": "...", "relation": "...", "object": "..."},
+    ...
+  ]
+
+Here is the text chunk:
+

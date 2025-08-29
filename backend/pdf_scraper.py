@@ -21,7 +21,7 @@ def extract_text_by_page(pdf_path: str):
         text = re.sub(r'\.{5,}\s*\d*', '', text)
         text = re.sub(r'\s+', ' ', text).strip()
         cleaned_text = ' '.join(text.split())
-        pages.append({"page": i + 1, "text": cleaned_text, "file": Path(pdf_path).name})
+        pages.append({"page": i + 1, "text": cleaned_text, "source": Path(pdf_path).name})
 
     doc.close()
     with open(f"./data/extracted_pdfs/{Path(pdf_path).stem}_extracted.json", "w", encoding="utf-16") as f:
