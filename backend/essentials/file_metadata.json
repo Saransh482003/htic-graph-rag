@@ -1,0 +1,47 @@
+[
+  {
+    "name": "0_artsens_manual.pdf",
+    "url": "https://github.com/Saransh482003/htic-graph-rag/blob/master/backend/data/raw_pdfs/0_artsens_manual.pdf",
+    "description": "User manual for ARTSENS Plus PWV device - a medical ultrasound device for measuring Aortic Pulse Wave Velocity"
+  },
+  {
+    "name": "2021_MeMeA_An_Image-Free_Ultrasound_Device_for_Simultaneous.pdf",
+    "url": "data/raw_pdfs/2021_MeMeA_An_Image-Free_Ultrasound_Device_for_Simultaneous.pdf",
+    "description": "Research paper on image-free ultrasound device for simultaneous measurements - MeMeA 2021 conference publication"
+  },
+  {
+    "name": "High-frame-rate A-mode ultrasound for calibration-free cuffless carotid pressure  feasibility study using lower body negative pressure intervention.pdf",
+    "url": "data/raw_pdfs/High-frame-rate A-mode ultrasound for calibration-free cuffless carotid pressure  feasibility study using lower body negative pressure intervention.pdf",
+    "description": "Feasibility study on high-frame-rate A-mode ultrasound for calibration-free cuffless carotid pressure measurement using lower body negative pressure intervention"
+  },
+  {
+    "name": "P14 11 Ways to Prevent Type 2 Diabetes.pdf",
+    "url": "data/raw_pdfs/P14 11 Ways to Prevent Type 2 Diabetes.pdf",
+    "description": "Educational material presenting 11 ways to prevent Type 2 Diabetes - patient information guide"
+  },
+  {
+    "name": "P4 Differentiating Obstructive from Central and Complex.pdf",
+    "url": "data/raw_pdfs/P4 Differentiating Obstructive from Central and Complex.pdf",
+    "description": "Clinical guide for differentiating obstructive sleep apnea from central and complex sleep apnea disorders"
+  },
+  {
+    "name": "P9 Chronic Inflammatory Diseases and Cardiovascular Risk.pdf",
+    "url": "data/raw_pdfs/P9 Chronic Inflammatory Diseases and Cardiovascular Risk.pdf",
+    "description": "Medical literature on the relationship between chronic inflammatory diseases and cardiovascular risk factors"
+  },
+  {
+    "name": "polar_manual.pdf",
+    "url": "data/raw_pdfs/polar_manual.pdf",
+    "description": "User manual for Polar device - likely a heart rate monitor or fitness tracking device"
+  },
+  {
+    "name": "ppfg.pdf",
+    "url": "data/raw_pdfs/ppfg.pdf",
+    "description": "Clinical or technical document (PPFG) - content to be determined from document analysis"
+  },
+  {
+    "name": "user_manual_bp.pdf",
+    "url": "data/raw_pdfs/user_manual_bp.pdf",
+    "description": "User manual for blood pressure monitoring device - instructions for BP measurement equipment"
+  }
+]
