@@ -1,5 +1,7 @@
 import json
 from neo4j import GraphDatabase
+import warnings
+warnings.filterwarnings("ignore")
 
 driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "testpassword"))
 
@@ -12,24 +14,24 @@ def insert_file(tx, file_id, name, url, description):
     """
     tx.run(query, file_id=file_id, name=name, url=url, description=description)
 
-def insert_chunk(tx, chunk_id, text, source, file_name):
+def insert_chunk(tx, chunk_id, text, source):
     query = """
-    MATCH (f:File {name: $file_name})
+    MATCH (f:File {name: $source})
     MERGE (c:Chunk {chunk_id: $chunk_id})
     SET c.text = $text,
         c.source = $source
     MERGE (f)-[:HAS_CHUNK]->(c)
     """
-    tx.run(query, file_name=file_name, chunk_id=chunk_id, text=text, source=source)
+    tx.run(query, chunk_id=chunk_id, text=text, source=source)
 
 def insert_triplet(tx, triplet_id, subject, relation, obj, source, chunk_id):
     query = """
-    MATCH (c:Chunk {id: $chunk_id})
+    MATCH (c:Chunk {chunk_id: $chunk_id})
     MERGE (s:Entity {name: $subject})
     MERGE (o:Entity {name: $object})
     MERGE (s)-[r:RELATION {type: $relation, triplet_id: $triplet_id, source: $source}]->(o)
-    MERGE (c)-[:CONTAINS_TRIPLET]->(s)
-    MERGE (c)-[:CONTAINS_TRIPLET]->(o)
+    MERGE (c)-[:CONTAINS_ENTITY]->(s)
+    MERGE (c)-[:CONTAINS_ENTITY]->(o)
     """
     tx.run(query, chunk_id=chunk_id, subject=subject, relation=relation,
            object=obj, triplet_id=triplet_id, source=source)
@@ -52,7 +54,7 @@ if __name__ == "__main__":
 
     
         for c in chunks:
-            session.write_transaction(insert_chunk, c["id"], c["text"], c["source"], "0_artsens_manual.pdf")
+            session.write_transaction(insert_chunk, c["id"], c["text"], c["source"])
 
     
         for t in triplets:
