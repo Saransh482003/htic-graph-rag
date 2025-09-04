@@ -52,10 +52,8 @@ if __name__ == "__main__":
         for i, f in enumerate(files):
             session.write_transaction(insert_file, f"file_{i}", f["name"], f["url"], f["description"])
 
-    
         for c in chunks:
             session.write_transaction(insert_chunk, c["id"], c["text"], c["source"])
-
     
         for t in triplets:
             chunk_id = "_".join(t["triplet_id"].split("_")[:2])
