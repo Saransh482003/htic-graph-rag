@@ -38,24 +38,28 @@ def answer_with_graph_rag_llama(question, retrievals):
     """Generate an answer using the knowledge graph context and LLM."""
     context = format_context(retrievals)
 
-    prompt = f"""You are an expert biomedical assistant with access to a comprehensive medical knowledge graph.
+    prompt = f"""You are a helpful biomedical assistant with access to a structured medical knowledge graph.
 
-    Your task is to answer the user's question using the provided structured knowledge and supporting documents.
+    Your task is to answer the user's question using the provided knowledge graph context and supporting documents.
 
     Guidelines:
-    - Provide accurate, evidence-based answers
-    - Cite specific sources when available  
-    - If information is incomplete, clearly state limitations
-    - Use clear, professional medical language
-    - Structure your response logically
-    - Keep responses concise and focused
+    - Base your answer ONLY on the provided context.
+    - Do NOT invent references or use numeric citation markers like [1], [2], etc.
+    - When citing evidence, mention the source naturally, e.g.:
+    - "According to the ARTSENS User Manual..."
+    - "The 2021 MeMeA publication reports that..."
+    - Keep the explanation clear and professional, suitable for clinicians or medical researchers.
+    - If the information is incomplete, explicitly say what is missing instead of guessing.
+    - Structure your answer logically (short intro → key points → conclusion).
+    - Aim for a natural explanatory style, not a scientific paper.
 
-    Question: {question}
+    Question:
+    {question}
 
     Knowledge Graph Context:
     {context}
 
-    Please provide a complete, well-structured answer based on the available context. If the question is not relevant to the medical/biomedical domain or the available context, politely explain this and suggest asking a relevant question instead.
+    Now provide a clear, well-structured answer grounded in the context above.
     """
 
     try:
